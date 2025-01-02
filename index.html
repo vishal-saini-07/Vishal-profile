@@ -1,11 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-<body>
-    <h1>Hi There 🙂</h1>
+
+<style>
+    @keyframes border-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        100% {
+            background-position: 200% 50%;
+        }
+    }
+
+
+    .animate-border {
+        background-size: 200% 200%;
+        animation: border-animation 2s linear infinite;
+    }
+
+    @keyframes border-run {
+        0% {
+            border-color: red;
+        }
+
+        25% {
+            border-color: blue;
+        }
+
+        50% {
+            border-color: darkmagenta;
+        }
+
+        75% {
+            border-color: skyblue;
+        }
+
+        100% {
+            border-color: red;
+        }
+    }
+
+    .border-run {
+        animation: border-run 4s linear infinite;
+        border-width: 3px;
+        border-style: solid;
+    }
+
+    .owl-item.active {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<body class="bg-black text-white">
+    <!-- Navbar -->
+    <nav class="fixed relative w-full bg-black z-10 px-4 backdrop-blur-lg">
+        <div class="container mx-auto flex justify-center items-center py-4 px-4">
+            <!-- <h1 class="text-2xl font-bold">Portfolio</h1> -->
+            <button id="menu-btn" class="block md:hidden text-gray-400 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+            <ul id="menu" class="hidden md:flex space-x-6">
+                <li><a href="#about" class="hover:text-gray-400 relative group">About Me<span
+                            class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all"></span></a>
+                </li>
+                <li><a href="#experience" class="hover:text-gray-400 relative group">Experience<span
+                            class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all"></span></a>
+                </li>
+                <li><a href="#projects" class="hover:text-gray-400 relative group">Projects<span
+                            class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all"></span></a>
+                </li>
+                <li><a href="#contact" class="hover:text-gray-400 relative group">Contact<span
+                            class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all"></span></a>
+                </li>
+            </ul>
+        </div>
+        <ul id="mobile-menu"
+            class="md:hidden hidden flex flex-col items-center space-y-4 bg-gray-900 py-4 absolute w-full z-1 left-0">
+            <li><a href="#about" class="hover:text-gray-400">About Me</a></li>
+            <li><a href="#experience" class="hover:text-gray-400">Experience</a></li>
+            <li><a href="#projects" class="hover:text-gray-400">Projects</a></li>
+            <li><a href="#contact" class="hover:text-gray-400">Contact</a></li>
+        </ul>
+    </nav>
+
+
+
+    <!-- About Me Section -->
+    <section class="min-h-screen relative">
+        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+            <source src="assets/1107905_1080p_4k_3840x2160.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- <img src="assets/bannerImage.jpg" class="absolute inset-0 w-full h-full object-cover" alt=""> -->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative text-white flex flex-col justify-center items-center px-4 py-12">
+            <img src="" alt="My Image"
+                class="rounded-full w-32 h-32 mb-4 mt-4 md:w-48 md:h-48 border-run"
+                style="rotate: -13deg; object-fit: cover; object-position: 52% -9%; background: black; clip-path: circle(61%); border-radius: 1px solid white; border: 3px solid white;">
+            <h1 class="text-4xl font-bold mb-2">Vishal Saini</h1>
+            <h2 class="text-4xl font-bold mb-2">Front-End <span id="role"></span></h2>
+            <p class="text-center text-lg max-w-lg">I am passionate about creating user-friendly designs and functional
+                interfaces that bring ideas to life.</p>
+            <button
+                class="relative px-8 py-2 mt-4 text-lg font-semibold text-white rounded-lg overflow-hidden focus:outline-none transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 active:shadow-inner border-run">
+                <span
+                    class="absolute inset-0 bg-gradient-to-r from-red-600 via-blue-500 to-red-600 animate-border"></span>
+                <span class="absolute inset-1 rounded-lg"></span>
+                <span class="relative z-10">Contact Us</span>
+            </button>
+        </div>
+    </section>
+
+
+    <section id="about">
+        <div class="mt-4 mb-5 flex items-center justify-center">
+            <div class="text-center p-6 bg-opacity-70  rounded-lg shadow-lg">
+                <h1
+                    class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-t from-neutral-800 via-neutral-400 to-neutral-100 mb-4 uppercase">
+                    About Me
+                </h1>
+                <p class="text-white text-xl max-w-xl mx-auto opacity-70 sm:opacity-100">
+                    Hello! I'm passionate about web development, design, and creating beautiful user experiences. I
+                    thrive on turning ideas into functional, user-friendly websites and applications. With a deep
+                    interest in technology and innovation, I continuously strive to learn new skills and improve my
+                    craft.
+                </p>
+            </div>
+        </div>
+        <!-- Education and Skills Section -->
+        <section id="about" class="flex flex-col justify-center items-center px-4 py-12 ">
+            <div class="grid grid-cols-6 justify-center gap-8 w-full ">
+                <div class="col-span-12 mx-auto">
+                    <h2
+                        class="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-neutral-800 via-neutral-400 to-neutral-100 mb-4 uppercase">
+                        Skills</h2>
+                    <div class="text-center max-w-screen-sm">
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            HTML
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            CSS
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Bootstrap
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            JavaScript
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Tailwind CSS
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            TypeScritp
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            jQuery
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Chart JS
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Canvas JS
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Responsive Design
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Admin Dashboard
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-12 mx-auto py-12">
+                    <h2
+                        class="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-neutral-800 via-neutral-400 to-neutral-100 mb-4 uppercase">
+                        Tools <br>Software</h2>
+                    <div class="text-center max-w-screen-sm">
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            GIT
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            VS Code
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Sublime Text
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            FileZilla
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Canvas
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            MS Office / Google Apps
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Trello
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-12 mx-auto">
+                    <h2
+                        class="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-neutral-800 via-neutral-400 to-neutral-100 mb-4 uppercase">
+                        FrameWorks</h2>
+                    <div class="text-center max-w-screen-sm">
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Angular Front-End
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            React Front-End
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Wordpress
+                        </div>
+                        <div
+                            class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg inline-block">
+                            Jquery
+                        </div>
+                    </div>
+                </div>
+                <!-- ...existing code... -->
+            </div>
+
+        </section>
+    </section>
+
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-12">
+        <div class="container mx-auto text-center">
+            <h2
+                class="text-5xl mb-6 font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-neutral-800 via-neutral-400 to-neutral-100 mb-4 uppercase">
+                Certifications</h2>
+            <!-- <h2 class="text-3xl font-bold mb-6">Certifications</h2> -->
+            <p>Digital Marketing E karma
+                (Aug 2022 -Feb2023)</p>
+            <p>Front -End Web Development
+                Certificate no. UC-ca82c3ac-f05e-4d17-
+                9eacbe7b7ebbbb22 (Udemy)</p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-12">
+        <div class="container mx-auto text-center">
+            <h2
+                class="text-5xl mb-6 font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-neutral-800 via-neutral-400 to-neutral-100 mb-4 uppercase">
+                Experience</h2>
+            <!-- <h2 class="text-3xl font-bold mb-6">Experience</h2> -->
+            <p>MYC India Education Pvt. Ltd.</p>
+            <p>March 2023 - Present (Front-End Developer)</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 bg-black-900">
+        <div class="container mx-auto">
+            <h2
+                class="text-5xl mb-6 font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-neutral-800 via-neutral-400 to-neutral-100 mb-4 uppercase">
+                Projects</h2>
+            <!-- <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2> -->
+            <div class="w-full overflow-hidden ">
+                <!-- carousel -->
+                <div id="" class="flex flex-wrap justify-center w-screen">
+                    <div class="item w-[300px] h-[300px] overflow-hidden m-4">
+                        <h2>E2mentor</h2>
+                        <div class="card ">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T05_59_48.483Z.png"
+                                            alt="Image 1" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_02_35.720Z.png"
+                                            alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/E2mentor.png" alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_09_30.031Z.png"
+                                            alt="Image 2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item w-[300px] h-[300px] overflow-hidden m-4">
+                        <h2>MYC</h2>
+                        <div class="card ">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T05_59_48.483Z.png"
+                                            alt="Image 1" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_02_35.720Z.png"
+                                            alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/E2mentor.png" alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_09_30.031Z.png"
+                                            alt="Image 2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item w-[300px] h-[300px] overflow-hidden m-4">
+                        <h2>Paradigm24</h2>
+                        <div class="card ">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T05_59_48.483Z.png"
+                                            alt="Image 1" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_02_35.720Z.png"
+                                            alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/E2mentor.png" alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_09_30.031Z.png"
+                                            alt="Image 2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item w-[300px] h-[300px] overflow-hidden m-4">
+                        <h2>MYCIndia</h2>
+                        <div class="card ">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T05_59_48.483Z.png"
+                                            alt="Image 1" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_02_35.720Z.png"
+                                            alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/E2mentor.png" alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_09_30.031Z.png"
+                                            alt="Image 2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item w-[300px] h-[300px] overflow-hidden m-4">
+                        <h2>TestforU</h2>
+                        <div class="card ">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T05_59_48.483Z.png"
+                                            alt="Image 1" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_02_35.720Z.png"
+                                            alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/E2mentor.png" alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_09_30.031Z.png"
+                                            alt="Image 2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item w-[300px] h-[300px] overflow-hidden m-4">
+                        <h2>FinbizPIan (Property Site)</h2>
+                        <div class="card ">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T05_59_48.483Z.png"
+                                            alt="Image 1" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_02_35.720Z.png"
+                                            alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/E2mentor.png" alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_09_30.031Z.png"
+                                            alt="Image 2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item w-[300px] h-[300px] overflow-hidden m-4">
+                        <h2>StudyAbroad (Ai Counselor)  </h2>
+                        <div class="card ">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T05_59_48.483Z.png"
+                                            alt="Image 1" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_02_35.720Z.png"
+                                            alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/E2mentor.png" alt="Image 2" /></div>
+                                    <div class="swiper-slide p-1"><img src="assets/CocoShot-2024-12-28T06_09_30.031Z.png"
+                                            alt="Image 2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="item bg-gray-800 p-4 rounded-lg">
+                        <blockquote class="imgur-embed-pub" lang="en" data-id="a/5svjWJl" data-context="false"><a
+                                href="//imgur.com/a/5svjWJl">E2mentor</a></blockquote>
+                        <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+                    </div>
+                    <div class="item bg-gray-800 p-4 rounded-lg">
+                        <blockquote class="imgur-embed-pub" lang="en" data-id="a/5svjWJl" data-context="false"><a
+                                href="//imgur.com/a/5svjWJl">E2mentor</a></blockquote>
+                        <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+                    </div>
+                    <div class="item bg-gray-800 p-4 rounded-lg">
+                        <blockquote class="imgur-embed-pub" lang="en" data-id="a/5svjWJl" data-context="false"><a
+                                href="//imgur.com/a/5svjWJl">E2mentor</a></blockquote>
+                        <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+                    </div>
+                    <div class="item bg-gray-800 p-4 rounded-lg">
+                        <blockquote class="imgur-embed-pub" lang="en" data-id="a/5svjWJl" data-context="false"><a
+                                href="//imgur.com/a/5svjWJl">E2mentor</a></blockquote>
+                        <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Contact Me</h2>
+            <p>Address: Village Dhulkot Ambala City Haryana</p>
+            <p>
+                Phone:
+                <a href="tel:9138192078" class="text-white cursor-pointer">
+                    9138192078
+                </a>
+            </p>
+            <p>Social Media</p>
+            <div class="flex justify-center gap-3 pt-2">
+                <a href="https://github.com/imsandeep1073" target="_blank"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 496 512" width="20" height="20">
+                        <path fill="white"
+                            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+                    </svg></a>
+                <a href="https://www.linkedin.com/in/sandeepkumar1073/" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512">
+                        <path fill="white"
+                            d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
+                    </svg>
+                </a>
+                <a href="https://x.com/s_sandeep1073" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512">
+                        <path fill="white"
+                            d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z" />
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/sandeepprajapati1073/" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"
+                        class="fill-white hover:fill-red-500 transition-colors">
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                    </svg>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-4">
+        <div class="container mx-auto text-center text-gray-400">&copy; 2024 My Portfolio Sandeep (Front-End
+            Developer/Designer)</div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 2000,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+              
+            });            
+        });
+
+    </script>
+
+
+
+    <!-- JavaScript -->
+    <script>
+        new Typed("#role", {
+            strings: ["", "Developer"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true
+        });
+        // gsap.to("#carousel", {
+        //     x: "-100%",
+        //     duration: 20,
+        //     ease: "none",
+        //     repeat: -1
+        // });
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    600: {
+                        items: 3,
+
+                        dots: true,
+                        center: true,
+                    },
+                    1000: {
+                        items: 5,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            })
+        });
+    </script>
 </body>
+
 </html>
